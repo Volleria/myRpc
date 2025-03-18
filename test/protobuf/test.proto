@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package fixbug;
+
+message LoginRequest 
+{
+    string username = 1;
+    string password = 2;
+}
+
+message LoginResponse 
+{
+    int32 error_code = 1;
+    string error_msg = 2;
+    bool success = 3;
+}
+
+message GetFriendListsRequest 
+{
+    string username = 1;
+}
+
+message GetFriendListsResponse 
+{
+    repeated string friends = 1; 
+}
