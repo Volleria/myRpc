@@ -22,7 +22,22 @@ message LoginResponse
     bool success = 2;
 }
 
+message RegisterRequest 
+{
+    uint32 id = 1;
+    string username = 2;
+    string password = 3;
+} 
+
+message RegisterResponse 
+{
+    ResultCode result_code = 1;
+    bool success = 2;
+}
+
+
 service UserServiceRpc
 {
     rpc Login(LoginRequest) returns (LoginResponse) {}
+    rpc Register(RegisterRequest) returns (RegisterResponse) {}
 }

@@ -45,6 +45,31 @@ struct ResultCodeDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResultCodeDefaultTypeInternal _ResultCode_default_instance_;
 
+inline constexpr RegisterRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : username_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        password_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        id_{0u},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR RegisterRequest::RegisterRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct RegisterRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RegisterRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RegisterRequestDefaultTypeInternal() {}
+  union {
+    RegisterRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RegisterRequestDefaultTypeInternal _RegisterRequest_default_instance_;
+
 inline constexpr LoginRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : username_(
@@ -69,6 +94,26 @@ struct LoginRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LoginRequestDefaultTypeInternal _LoginRequest_default_instance_;
 
+inline constexpr RegisterResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        result_code_{nullptr},
+        success_{false} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR RegisterResponse::RegisterResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct RegisterResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RegisterResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RegisterResponseDefaultTypeInternal() {}
+  union {
+    RegisterResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RegisterResponseDefaultTypeInternal _RegisterResponse_default_instance_;
+
 inline constexpr LoginResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -89,7 +134,7 @@ struct LoginResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LoginResponseDefaultTypeInternal _LoginResponse_default_instance_;
 }  // namespace fixbug
-static ::_pb::Metadata file_level_metadata_user_2eproto[3];
+static ::_pb::Metadata file_level_metadata_user_2eproto[5];
 static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_user_2eproto = nullptr;
 static const ::_pb::ServiceDescriptor*
@@ -129,6 +174,29 @@ const ::uint32_t TableStruct_user_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
     PROTOBUF_FIELD_OFFSET(::fixbug::LoginResponse, _impl_.success_),
     0,
     ~0u,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::fixbug::RegisterRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::fixbug::RegisterRequest, _impl_.id_),
+    PROTOBUF_FIELD_OFFSET(::fixbug::RegisterRequest, _impl_.username_),
+    PROTOBUF_FIELD_OFFSET(::fixbug::RegisterRequest, _impl_.password_),
+    PROTOBUF_FIELD_OFFSET(::fixbug::RegisterResponse, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::fixbug::RegisterResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::fixbug::RegisterResponse, _impl_.result_code_),
+    PROTOBUF_FIELD_OFFSET(::fixbug::RegisterResponse, _impl_.success_),
+    0,
+    ~0u,
 };
 
 static const ::_pbi::MigrationSchema
@@ -136,12 +204,16 @@ static const ::_pbi::MigrationSchema
         {0, -1, -1, sizeof(::fixbug::ResultCode)},
         {11, -1, -1, sizeof(::fixbug::LoginRequest)},
         {21, 31, -1, sizeof(::fixbug::LoginResponse)},
+        {33, -1, -1, sizeof(::fixbug::RegisterRequest)},
+        {44, 54, -1, sizeof(::fixbug::RegisterResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
     &::fixbug::_ResultCode_default_instance_._instance,
     &::fixbug::_LoginRequest_default_instance_._instance,
     &::fixbug::_LoginResponse_default_instance_._instance,
+    &::fixbug::_RegisterRequest_default_instance_._instance,
+    &::fixbug::_RegisterResponse_default_instance_._instance,
 };
 const char descriptor_table_protodef_user_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\nuser.proto\022\006fixbug\"D\n\nResultCode\022\022\n\ner"
@@ -149,21 +221,26 @@ const char descriptor_table_protodef_user_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
     "cess\030\003 \001(\010\"2\n\014LoginRequest\022\020\n\010username\030\001"
     " \001(\t\022\020\n\010password\030\002 \001(\t\"I\n\rLoginResponse\022"
     "\'\n\013result_code\030\001 \001(\0132\022.fixbug.ResultCode"
-    "\022\017\n\007success\030\002 \001(\0102H\n\016UserServiceRpc\0226\n\005L"
-    "ogin\022\024.fixbug.LoginRequest\032\025.fixbug.Logi"
-    "nResponse\"\000B\003\200\001\001b\006proto3"
+    "\022\017\n\007success\030\002 \001(\010\"A\n\017RegisterRequest\022\n\n\002"
+    "id\030\001 \001(\r\022\020\n\010username\030\002 \001(\t\022\020\n\010password\030\003"
+    " \001(\t\"L\n\020RegisterResponse\022\'\n\013result_code\030"
+    "\001 \001(\0132\022.fixbug.ResultCode\022\017\n\007success\030\002 \001"
+    "(\0102\211\001\n\016UserServiceRpc\0226\n\005Login\022\024.fixbug."
+    "LoginRequest\032\025.fixbug.LoginResponse\"\000\022\?\n"
+    "\010Register\022\027.fixbug.RegisterRequest\032\030.fix"
+    "bug.RegisterResponse\"\000B\003\200\001\001b\006proto3"
 };
 static ::absl::once_flag descriptor_table_user_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_user_2eproto = {
     false,
     false,
-    304,
+    515,
     descriptor_table_protodef_user_2eproto,
     "user.proto",
     &descriptor_table_user_2eproto_once,
     nullptr,
     0,
-    3,
+    5,
     schemas,
     file_default_instances,
     TableStruct_user_2eproto::offsets,
@@ -907,6 +984,492 @@ void LoginResponse::InternalSwap(LoginResponse* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
+class RegisterRequest::_Internal {
+ public:
+};
+
+RegisterRequest::RegisterRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:fixbug.RegisterRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE RegisterRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : username_(arena, from.username_),
+        password_(arena, from.password_),
+        _cached_size_{0} {}
+
+RegisterRequest::RegisterRequest(
+    ::google::protobuf::Arena* arena,
+    const RegisterRequest& from)
+    : ::google::protobuf::Message(arena) {
+  RegisterRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.id_ = from._impl_.id_;
+
+  // @@protoc_insertion_point(copy_constructor:fixbug.RegisterRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE RegisterRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : username_(arena),
+        password_(arena),
+        _cached_size_{0} {}
+
+inline void RegisterRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.id_ = {};
+}
+RegisterRequest::~RegisterRequest() {
+  // @@protoc_insertion_point(destructor:fixbug.RegisterRequest)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void RegisterRequest::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.username_.Destroy();
+  _impl_.password_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void RegisterRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:fixbug.RegisterRequest)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.username_.ClearToEmpty();
+  _impl_.password_.ClearToEmpty();
+  _impl_.id_ = 0u;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* RegisterRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 47, 2> RegisterRequest::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_RegisterRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // uint32 id = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RegisterRequest, _impl_.id_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterRequest, _impl_.id_)}},
+    // string username = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterRequest, _impl_.username_)}},
+    // string password = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterRequest, _impl_.password_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 id = 1;
+    {PROTOBUF_FIELD_OFFSET(RegisterRequest, _impl_.id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // string username = 2;
+    {PROTOBUF_FIELD_OFFSET(RegisterRequest, _impl_.username_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string password = 3;
+    {PROTOBUF_FIELD_OFFSET(RegisterRequest, _impl_.password_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\26\0\10\10\0\0\0\0"
+    "fixbug.RegisterRequest"
+    "username"
+    "password"
+  }},
+};
+
+::uint8_t* RegisterRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:fixbug.RegisterRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // uint32 id = 1;
+  if (this->_internal_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_id(), target);
+  }
+
+  // string username = 2;
+  if (!this->_internal_username().empty()) {
+    const std::string& _s = this->_internal_username();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "fixbug.RegisterRequest.username");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  // string password = 3;
+  if (!this->_internal_password().empty()) {
+    const std::string& _s = this->_internal_password();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "fixbug.RegisterRequest.password");
+    target = stream->WriteStringMaybeAliased(3, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:fixbug.RegisterRequest)
+  return target;
+}
+
+::size_t RegisterRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:fixbug.RegisterRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string username = 2;
+  if (!this->_internal_username().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_username());
+  }
+
+  // string password = 3;
+  if (!this->_internal_password().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_password());
+  }
+
+  // uint32 id = 1;
+  if (this->_internal_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData RegisterRequest::_class_data_ = {
+    RegisterRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* RegisterRequest::GetClassData() const {
+  return &_class_data_;
+}
+
+void RegisterRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<RegisterRequest*>(&to_msg);
+  auto& from = static_cast<const RegisterRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:fixbug.RegisterRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_username().empty()) {
+    _this->_internal_set_username(from._internal_username());
+  }
+  if (!from._internal_password().empty()) {
+    _this->_internal_set_password(from._internal_password());
+  }
+  if (from._internal_id() != 0) {
+    _this->_internal_set_id(from._internal_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void RegisterRequest::CopyFrom(const RegisterRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:fixbug.RegisterRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool RegisterRequest::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* RegisterRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void RegisterRequest::InternalSwap(RegisterRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.username_, &other->_impl_.username_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.password_, &other->_impl_.password_, arena);
+        swap(_impl_.id_, other->_impl_.id_);
+}
+
+::google::protobuf::Metadata RegisterRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_user_2eproto_getter, &descriptor_table_user_2eproto_once,
+      file_level_metadata_user_2eproto[3]);
+}
+// ===================================================================
+
+class RegisterResponse::_Internal {
+ public:
+  using HasBits = decltype(std::declval<RegisterResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(RegisterResponse, _impl_._has_bits_);
+  static const ::fixbug::ResultCode& result_code(const RegisterResponse* msg);
+  static void set_has_result_code(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::fixbug::ResultCode& RegisterResponse::_Internal::result_code(const RegisterResponse* msg) {
+  return *msg->_impl_.result_code_;
+}
+RegisterResponse::RegisterResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:fixbug.RegisterResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE RegisterResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+RegisterResponse::RegisterResponse(
+    ::google::protobuf::Arena* arena,
+    const RegisterResponse& from)
+    : ::google::protobuf::Message(arena) {
+  RegisterResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.result_code_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::fixbug::ResultCode>(arena, *from._impl_.result_code_)
+                : nullptr;
+  _impl_.success_ = from._impl_.success_;
+
+  // @@protoc_insertion_point(copy_constructor:fixbug.RegisterResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE RegisterResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void RegisterResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, result_code_),
+           0,
+           offsetof(Impl_, success_) -
+               offsetof(Impl_, result_code_) +
+               sizeof(Impl_::success_));
+}
+RegisterResponse::~RegisterResponse() {
+  // @@protoc_insertion_point(destructor:fixbug.RegisterResponse)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void RegisterResponse::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.result_code_;
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void RegisterResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:fixbug.RegisterResponse)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.result_code_ != nullptr);
+    _impl_.result_code_->Clear();
+  }
+  _impl_.success_ = false;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* RegisterResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 0, 2> RegisterResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(RegisterResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_RegisterResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // bool success = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(RegisterResponse, _impl_.success_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterResponse, _impl_.success_)}},
+    // .fixbug.ResultCode result_code = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(RegisterResponse, _impl_.result_code_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .fixbug.ResultCode result_code = 1;
+    {PROTOBUF_FIELD_OFFSET(RegisterResponse, _impl_.result_code_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // bool success = 2;
+    {PROTOBUF_FIELD_OFFSET(RegisterResponse, _impl_.success_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::fixbug::ResultCode>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* RegisterResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:fixbug.RegisterResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .fixbug.ResultCode result_code = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::result_code(this),
+        _Internal::result_code(this).GetCachedSize(), target, stream);
+  }
+
+  // bool success = 2;
+  if (this->_internal_success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        2, this->_internal_success(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:fixbug.RegisterResponse)
+  return target;
+}
+
+::size_t RegisterResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:fixbug.RegisterResponse)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .fixbug.ResultCode result_code = 1;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.result_code_);
+  }
+
+  // bool success = 2;
+  if (this->_internal_success() != 0) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData RegisterResponse::_class_data_ = {
+    RegisterResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* RegisterResponse::GetClassData() const {
+  return &_class_data_;
+}
+
+void RegisterResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<RegisterResponse*>(&to_msg);
+  auto& from = static_cast<const RegisterResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:fixbug.RegisterResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_result_code()->::fixbug::ResultCode::MergeFrom(
+        from._internal_result_code());
+  }
+  if (from._internal_success() != 0) {
+    _this->_internal_set_success(from._internal_success());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void RegisterResponse::CopyFrom(const RegisterResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:fixbug.RegisterResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool RegisterResponse::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* RegisterResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void RegisterResponse::InternalSwap(RegisterResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(RegisterResponse, _impl_.success_)
+      + sizeof(RegisterResponse::_impl_.success_)
+      - PROTOBUF_FIELD_OFFSET(RegisterResponse, _impl_.result_code_)>(
+          reinterpret_cast<char*>(&_impl_.result_code_),
+          reinterpret_cast<char*>(&other->_impl_.result_code_));
+}
+
+::google::protobuf::Metadata RegisterResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_user_2eproto_getter, &descriptor_table_user_2eproto_once,
+      file_level_metadata_user_2eproto[4]);
+}
+// ===================================================================
+
 const ::google::protobuf::ServiceDescriptor* UserServiceRpc::descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_user_2eproto);
   return file_level_service_descriptors_user_2eproto[0];
@@ -919,6 +1482,11 @@ const ::google::protobuf::ServiceDescriptor* UserServiceRpc::GetDescriptor() {
 void UserServiceRpc::Login(::google::protobuf::RpcController* controller,
                          const ::fixbug::LoginRequest*, ::fixbug::LoginResponse*, ::google::protobuf::Closure* done) {
   controller->SetFailed("Method Login() not implemented.");
+  done->Run();
+}
+void UserServiceRpc::Register(::google::protobuf::RpcController* controller,
+                         const ::fixbug::RegisterRequest*, ::fixbug::RegisterResponse*, ::google::protobuf::Closure* done) {
+  controller->SetFailed("Method Register() not implemented.");
   done->Run();
 }
 
@@ -934,6 +1502,11 @@ void UserServiceRpc::CallMethod(
              ::google::protobuf::internal::DownCast<const ::fixbug::LoginRequest*>(request),
              ::google::protobuf::internal::DownCast<::fixbug::LoginResponse*>(response), done);
       break;
+    case 1:
+      Register(controller,
+             ::google::protobuf::internal::DownCast<const ::fixbug::RegisterRequest*>(request),
+             ::google::protobuf::internal::DownCast<::fixbug::RegisterResponse*>(response), done);
+      break;
 
     default:
       ABSL_LOG(FATAL) << "Bad method index; this should never happen.";
@@ -947,6 +1520,8 @@ const ::google::protobuf::Message& UserServiceRpc::GetRequestPrototype(
   switch (method->index()) {
     case 0:
       return ::fixbug::LoginRequest::default_instance();
+    case 1:
+      return ::fixbug::RegisterRequest::default_instance();
 
     default:
       ABSL_LOG(FATAL) << "Bad method index; this should never happen.";
@@ -961,6 +1536,8 @@ const ::google::protobuf::Message& UserServiceRpc::GetResponsePrototype(
   switch (method->index()) {
     case 0:
       return ::fixbug::LoginResponse::default_instance();
+    case 1:
+      return ::fixbug::RegisterResponse::default_instance();
 
     default:
       ABSL_LOG(FATAL) << "Bad method index; this should never happen.";
@@ -987,6 +1564,12 @@ void UserServiceRpc_Stub::Login(::google::protobuf::RpcController* controller,
                               const ::fixbug::LoginRequest* request,
                               ::fixbug::LoginResponse* response, ::google::protobuf::Closure* done) {
   channel_->CallMethod(descriptor()->method(0), controller,
+                       request, response, done);
+}
+void UserServiceRpc_Stub::Register(::google::protobuf::RpcController* controller,
+                              const ::fixbug::RegisterRequest* request,
+                              ::fixbug::RegisterResponse* response, ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(1), controller,
                        request, response, done);
 }
 // @@protoc_insertion_point(namespace_scope)

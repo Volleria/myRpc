@@ -1,6 +1,8 @@
 #pragma once
 #include "MyRpcConfig.h"
-
+#include "RpcProvider.h"
+#include "MyRpcChannel.h"
+#include "MyRpcController.h"
 
 // MyRpc框架初始化
 class MyRpcApplication

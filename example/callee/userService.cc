@@ -15,6 +15,13 @@ class UserService : public UserServiceRpc // 使用在rpc服务端，rpc服务�
         return true;
     }
 
+    bool Register(uint32_t id, std::string name, std::string password)
+    {
+        std::cout << "UserService::Register" << std::endl;
+        std::cout << "id: " << id << " name: " << name << " password: " << password << std::endl;
+        return true;
+    }
+
     // 重写基类UserServiceRpc的虚函数
     // 1. controller: 用于控制rpc的调用信息
     // 2. request: rpc调用的请求参数
@@ -42,9 +49,31 @@ class UserService : public UserServiceRpc // 使用在rpc服务端，rpc服务�
         // 业务处理完毕，调用done回调通知框架
         done->Run();
     }
+
+    void Register(::google::protobuf::RpcController* controller,
+                  const ::fixbug::RegisterRequest* request,
+                  ::fixbug::RegisterResponse* response,
+                  ::google::protobuf::Closure* done) override
+    {
+        // 框架给业务上报了请求参数RegisterRequest，业务获取相应数据做本地业务
+        uint32_t id = request->id();
+        std::string name = request->username();
+        std::string password = request->password();
+        // 本地业务
+        bool registerResult = Register(id, name, password); 
+
+        // 业务处理完毕，将结果填充到response中
+        fixbug::ResultCode* result = response->mutable_result();
+        result->set_errcode(0);
+        result->set_errmsg("this err message is set by callee");
+        response->set_success(registerResult);
+
+        // 业务处理完毕，调用done回调通知框架
+        done->Run();
+    }
 };
 
-int main()
+int main(int argc, char **argv)
 {
     // 框架初始化操作
     MyRpcApplication::Init(argc, argv);
