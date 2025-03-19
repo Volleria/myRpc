@@ -20,16 +20,25 @@ int main(int argc, char **argv)
     MyRpcController controller;
 
     // 发起rpc调用
-    stub.Login(controller, &request, &response, nullptr);
+    stub.Login(&controller, &request, &response, nullptr);
     // rpc调用完成,读取响应结果
-    if(response.result_code().error_code() == 0)
+    if(controller.Failed())
     {
-        std::cout << "rpc Login response: " << response.success() << std::endl;
+        std::cout << "rpc Login failed: " << controller.ErrorText() << std::endl;
     }
     else
     {
-        std::cout << "rpc Login response error: " << response.result_code().error_msg() << std::endl;
+        if(response.result_code().error_code() == 0)
+        {
+            std::cout << "rpc Login response: " << response.success() << std::endl;
+        }
+        else
+        {
+            std::cout << "rpc Login response error: " << response.result_code().error_msg() << std::endl;
+        }
     }
+
+
 
 
     fixbug::RegisterRequest request2;

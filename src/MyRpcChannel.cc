@@ -19,7 +19,7 @@ void MyRpcChannel::CallMethod(const google::protobuf::MethodDescriptor *method,
     int args_size = 0;
     if(!request->SerializeToString(&args_str))
     {
-        std::cerr << "request.SerializeToString failed" << std::endl;
+        controller->SetFailed("request.SerializeToString failed");
         return;
     }
     args_size = args_str.size();
@@ -34,7 +34,7 @@ void MyRpcChannel::CallMethod(const google::protobuf::MethodDescriptor *method,
     std::string rpc_header_str;
     if(!rpc_header.SerializeToString(&rpc_header_str))
     {
-        std::cerr << "rpc_header.SerializeToString failed" << std::endl;
+        controller->SetFailed("rpc_header.SerializeToString failed");
         return;
     }
     header_size = rpc_header_str.size();
@@ -62,8 +62,10 @@ void MyRpcChannel::CallMethod(const google::protobuf::MethodDescriptor *method,
 
     if (*clientfd == -1)
     {
-        std::cout << "create socket error: " << errno << std::endl;
-        exit(EXIT_FAILURE);
+        char errtxt[512] = {0};
+        sprintf(errtxt, "create socket error: %s", strerror(errno));
+        controller->SetFailed(errtxt);
+        return;
     }
 
     std::string ip = MyRpcApplication::GetInstance().GetConfig().Load("rpcserver_ip");
@@ -76,14 +78,19 @@ void MyRpcChannel::CallMethod(const google::protobuf::MethodDescriptor *method,
 
     if(connect(*clientfd, (struct sockaddr *)&serveraddr, sizeof(serveraddr)) == -1)
     {
-        std::cout << "connect error: " << errno << std::endl;
-        exit(EXIT_FAILURE);
+        char errtxt[512] = {0};
+        sprintf(errtxt, "connect error: %s", strerror(errno));
+        controller->SetFailed(errtxt);
+        return;
+
     }
 
     // 发送rpc请求
     if(send(*clientfd, send_rpc_str.c_str(), send_rpc_str.size(), 0) == -1)
     {
-        std::cout << "send error: " << errno << std::endl;
+        char errtxt[512] = {0};
+        sprintf(errtxt, "send error: %s", strerror(errno));
+        controller->SetFailed(errtxt);
         return;
     }
 
@@ -92,14 +99,16 @@ void MyRpcChannel::CallMethod(const google::protobuf::MethodDescriptor *method,
     int recv_size = recv(*clientfd, recv_buf, 1024, 0);  
     if(recv_size == -1)
     {
-        std::cout << "recv error: " << errno << std::endl;
+        char errtxt[512] = {0};
+        sprintf(errtxt, "recv error: %s", strerror(errno));
+        controller->SetFailed(errtxt);
         return;
     }
 
     std::string response_str(recv_buf, recv_size);
     if(!response->ParseFromString(response_str))
     {
-        std::cerr << "response.ParseFromString failed" << std::endl;
+        controller->SetFailed("response.ParseFromString failed");
         return;
     }
 
